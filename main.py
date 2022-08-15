@@ -100,23 +100,9 @@ while True:
                         player =1
                     
                     draw_figure()
-                    if board[0][0] == board[0][1] and board[0][0] == board[0][2]:
-                        pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
+                   
 
-                    elif board[1][0] == board[1][1]== board[1][2]:
-                       pygame.draw.line(screen,CIRCLE_COLOR,(0,300),(600,300),LINE_WIDTH)
-                    elif board[2][0] == board[2][1]== board[2][2]:
-                        pygame.draw.line(screen,LINE_COLOR,(0,200),(600,200),LINE_WIDTH)
-
-                    elif board[0][0] == board[1][0]== board[2][0]:
-                        pygame.draw.line(screen,LINE_COLOR,(0,200),(600,200),LINE_WIDTH)
-                    elif board[0][1] == board[1][1]== board[2][1]:
-                        pygame.draw.line(screen,LINE_COLOR,(0,200),(600,200),LINE_WIDTH)
-                    elif board[0][2] == board[1][2]== board[2][1]:
-                        pygame.draw.line(screen,LINE_COLOR,(0,200),(600,200),LINE_WIDTH)
-
-                    elif board[2][0] == board[1][1]== board[0][2]:
-                        pygame.draw.line(screen,LINE_COLOR,(0,200),(600,200),LINE_WIDTH)
+                    
                   
                     
 
