@@ -1,4 +1,5 @@
 from ctypes.wintypes import RGB
+from email.base64mime import body_encode
 from re import S
 from turtle import Screen
 from matplotlib.lines import Line2D
@@ -58,6 +59,30 @@ def draw_figure():
                 pygame.draw.line(screen,XLINE_COLOR,(col* 200 +SPACE,row*200+SPACE),(col *200+200-SPACE,row*200+200-SPACE),CROSS_WIDTH)
             
                 
+def win ():
+    # Check Horizontaly 
+    # Player 1
+    if (board[0][0]== 1 and board[0][1]==1 and board[0][2]== 1) or (board[0][0]== 2 and board[0][1]==2 and board[0][2]== 2):
+        pass
+    if (board[1][0]==1 and board[1][1]==1 and board[1][2]== 1) or (board[1][0]==2 and board[1][1]==2 and board[1][2]== 2):
+        pass
+    if (board[2][0]==1 and board[2][1]==1 and board[2][2]== 1) or (board[2][0]==2 and board[2][1]==2 and board[2][2]== 2):
+        pass
+    #Check Vertically
+    if (board[0][1]== 1 and board[1][0]==1 and board[2][0] == 1)or (board[0][1]== 2 and board[1][0]==2 and board[2][0] == 2):
+        pass
+    if (board[0][1]== 1 and board[1][1] ==1 and board[2][1]==1) or (board[0][1]== 2 and board[1][1] ==2 and board[2][1]==2) :
+        pass
+    if (board[0][2]==1 and board[1][2]==1 and board[2][2]== 1) or (board[0][2]==2 and board[1][2]==2 and board[2][2]== 2) :
+
+        pass
+    # Check Digonally
+    if (board[0][1]==1 and board[1][1]==1 and board[2][2]==1)or (board[0][1]==2 and board[1][1]==2 and board[2][2]==2):
+        pass
+    if (board[2][0]==1 and board[1][1]==1 and board[0][2]==1)or (board[2][0]==1 and board[1][1]==1 and board[0][2]==1):
+        pass
+
+
 
 def mark_square(row,col,player):
     board[row][col]= player
