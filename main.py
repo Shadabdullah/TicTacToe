@@ -58,29 +58,33 @@ def draw_figure():
                 pygame.draw.line(screen,XLINE_COLOR,(col* 200 +SPACE,row*200+200-SPACE),(col *200+200-SPACE,row*200+SPACE),CROSS_WIDTH)
                 pygame.draw.line(screen,XLINE_COLOR,(col* 200 +SPACE,row*200+SPACE),(col *200+200-SPACE,row*200+200-SPACE),CROSS_WIDTH)
             
-                
+
+                    
 def win ():
     # Check Horizontaly 
     # Player 1
     if (board[0][0]== 1 and board[0][1]==1 and board[0][2]== 1) or (board[0][0]== 2 and board[0][1]==2 and board[0][2]== 2):
-        pass
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
+        pygame.display.update()
     if (board[1][0]==1 and board[1][1]==1 and board[1][2]== 1) or (board[1][0]==2 and board[1][1]==2 and board[1][2]== 2):
-        pass
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,300),(600,300),LINE_WIDTH)
     if (board[2][0]==1 and board[2][1]==1 and board[2][2]== 1) or (board[2][0]==2 and board[2][1]==2 and board[2][2]== 2):
-        pass
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,500),(600,500),LINE_WIDTH)
     #Check Vertically
-    if (board[0][1]== 1 and board[1][0]==1 and board[2][0] == 1)or (board[0][1]== 2 and board[1][0]==2 and board[2][0] == 2):
-        pass
+    if (board[0][0]== 1 and board[1][0]==1 and board[2][0] == 1)or (board[0][0]== 2 and board[1][0]==2 and board[2][0] == 2):
+        pygame.draw.line(screen,CIRCLE_COLOR,(100,0),(100,600),LINE_WIDTH)
     if (board[0][1]== 1 and board[1][1] ==1 and board[2][1]==1) or (board[0][1]== 2 and board[1][1] ==2 and board[2][1]==2) :
-        pass
+        pygame.draw.line(screen,CIRCLE_COLOR,(300,0),(300,600),LINE_WIDTH)
+
     if (board[0][2]==1 and board[1][2]==1 and board[2][2]== 1) or (board[0][2]==2 and board[1][2]==2 and board[2][2]== 2) :
 
-        pass
+        pygame.draw.line(screen,CIRCLE_COLOR,(500,0),(500,600),LINE_WIDTH)
     # Check Digonally
-    if (board[0][1]==1 and board[1][1]==1 and board[2][2]==1)or (board[0][1]==2 and board[1][1]==2 and board[2][2]==2):
-        pass
-    if (board[2][0]==1 and board[1][1]==1 and board[0][2]==1)or (board[2][0]==1 and board[1][1]==1 and board[0][2]==1):
-        pass
+    if (board[0][0]==1 and board[1][1]==1 and board[2][2]==1)or (board[0][0]==2 and board[1][1]==2 and board[2][2]==2):
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,0),(600,600),LINE_WIDTH)
+    if (board[2][0]==1 and board[1][1]==1 and board[0][2]==1)or (board[2][0]==2 and board[1][1]==2 and board[0][2]==2):
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),LINE_WIDTH)
+
 
 
 
@@ -125,7 +129,7 @@ while True:
                         player =1
                     
                     draw_figure()
-                   
+                    win()
 
                     
                   
