@@ -65,7 +65,6 @@ def win ():
     # Player 1
     if (board[0][0]== 1 and board[0][1]==1 and board[0][2]== 1) or (board[0][0]== 2 and board[0][1]==2 and board[0][2]== 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
-        pygame.display.update()
     if (board[1][0]==1 and board[1][1]==1 and board[1][2]== 1) or (board[1][0]==2 and board[1][1]==2 and board[1][2]== 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,300),(600,300),LINE_WIDTH)
     if (board[2][0]==1 and board[2][1]==1 and board[2][2]== 1) or (board[2][0]==2 and board[2][1]==2 and board[2][2]== 2):
@@ -85,7 +84,7 @@ def win ():
     if (board[2][0]==1 and board[1][1]==1 and board[0][2]==1)or (board[2][0]==2 and board[1][1]==2 and board[0][2]==2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),LINE_WIDTH)
 
-
+    #Change code its not 
 
 
 def mark_square(row,col,player):
