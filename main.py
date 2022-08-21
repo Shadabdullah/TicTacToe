@@ -58,32 +58,50 @@ def draw_figure():
                 pygame.draw.line(screen,XLINE_COLOR,(col* 200 +SPACE,row*200+200-SPACE),(col *200+200-SPACE,row*200+SPACE),CROSS_WIDTH)
                 pygame.draw.line(screen,XLINE_COLOR,(col* 200 +SPACE,row*200+SPACE),(col *200+200-SPACE,row*200+200-SPACE),CROSS_WIDTH)
             
+# Function to restart game
+def restart():
+    screen.fill(RGB_COLOR)
+    for r in range(BORD_ROWS):
+        for c in range(BORD_COLS):
+            board[r][c]=0
+    drawLine() 
+# Tie game
+def tie():
+    
+    restart()
+         
 
-                    
 def win ():
     # Check Horizontaly 
     # Player 1
     if (board[0][0]== 1 and board[0][1]==1 and board[0][2]== 1) or (board[0][0]== 2 and board[0][1]==2 and board[0][2]== 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
+        restart()
     if (board[1][0]==1 and board[1][1]==1 and board[1][2]== 1) or (board[1][0]==2 and board[1][1]==2 and board[1][2]== 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,300),(600,300),LINE_WIDTH)
+        restart()
     if (board[2][0]==1 and board[2][1]==1 and board[2][2]== 1) or (board[2][0]==2 and board[2][1]==2 and board[2][2]== 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,500),(600,500),LINE_WIDTH)
+        restart()
     #Check Vertically
     if (board[0][0]== 1 and board[1][0]==1 and board[2][0] == 1)or (board[0][0]== 2 and board[1][0]==2 and board[2][0] == 2):
         pygame.draw.line(screen,CIRCLE_COLOR,(100,0),(100,600),LINE_WIDTH)
+        restart()
     if (board[0][1]== 1 and board[1][1] ==1 and board[2][1]==1) or (board[0][1]== 2 and board[1][1] ==2 and board[2][1]==2) :
         pygame.draw.line(screen,CIRCLE_COLOR,(300,0),(300,600),LINE_WIDTH)
+        restart()
 
     if (board[0][2]==1 and board[1][2]==1 and board[2][2]== 1) or (board[0][2]==2 and board[1][2]==2 and board[2][2]== 2) :
 
         pygame.draw.line(screen,CIRCLE_COLOR,(500,0),(500,600),LINE_WIDTH)
+        restart()
     # Check Digonally
     if (board[0][0]==1 and board[1][1]==1 and board[2][2]==1)or (board[0][0]==2 and board[1][1]==2 and board[2][2]==2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,0),(600,600),LINE_WIDTH)
+        restart()
     if (board[2][0]==1 and board[1][1]==1 and board[0][2]==1)or (board[2][0]==2 and board[1][1]==2 and board[0][2]==2):
         pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),LINE_WIDTH)
-
+        restart()
     #Change code its not 
 
 
@@ -94,7 +112,6 @@ def is_available(row,col):
     return board[row][col]==0
 
 def is_board_full():
-
     for r in range(BORD_ROWS):
         for c in range(BORD_COLS):
             if board[r][c]==0:
@@ -129,7 +146,8 @@ while True:
                     
                     draw_figure()
                     win()
-
+            else:
+                tie()
                     
                   
                     
