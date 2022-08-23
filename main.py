@@ -13,7 +13,7 @@ pygame.init()
 #Constants
 
 WIDTH = 600
-HEIGHT = 800
+HEIGHT = WIDTH
 LINE_WIDTH = 15
 CIRCLE_WIDTH = 15
 CIRCLE_RADIUS= 60
@@ -63,9 +63,23 @@ def draw_figure():
     drawLine() 
 
          
+#Check win
 
+def Win():
+    for r in range(BORD_COLS):
+        if board[0][r]== player:
+            pass
 
-
+def horizontalWin():
+    pass
+def verticalWin():
+    pass
+def digonalWin():
+    pass
+def tie():
+    pass
+def restart():
+    pass
 #Check Horizontall
 def mark_square(row,col,player):
     board[row][col]= player
@@ -98,14 +112,12 @@ while True:
                 if is_available(clicked_row,clicked_col):
                     if player ==1:
                         mark_square(clicked_row,clicked_col,player)
-                        board[clicked_row][clicked_col]=player
-                     
+                        board[clicked_row][clicked_col]=player  
                         player = 2
 
                     elif player==2:
                         mark_square(clicked_row,clicked_col,player)
                         board[clicked_row][clicked_col]=player
-            
                         player =1
                     
                     draw_figure()
