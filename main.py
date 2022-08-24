@@ -65,17 +65,32 @@ def draw_figure():
          
 #Check win
 
-def Win():
-    for r in range(BORD_COLS):
-        if board[0][r]== player:
-            pass
+def Win(player):
+    
+    hori = horizontalWin(player)
+    verti = verticalWin(player)
+    diag = digonalWin(player)
 
-def horizontalWin():
-    pass
-def verticalWin():
-    pass
-def digonalWin():
-    pass
+def horizontalWin(player):
+    for r in range(BORD_ROWS):
+        if board[r][0]== player and board[r][1]==player and board[r][2]== player:
+            pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
+            return True
+    
+def verticalWin(player):
+    for r in range(BORD_ROWS):
+        if board[0][r]== player and board[1][r]==player and board[2][r] == player:
+            pygame.draw.line(screen,CIRCLE_COLOR,(100,0),(100,600),LINE_WIDTH)
+            return True
+def digonalWin(player):
+    if board[0][0]==player and board[1][1]==player and board[2][2]==player:
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,0),(600,600),LINE_WIDTH)
+        return True
+    elif board[2][0]==player and board[1][1]==player and board[0][2]==player:
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),LINE_WIDTH)
+        return True
+    else:
+        return False
 def tie():
     pass
 def restart():
@@ -112,12 +127,14 @@ while True:
                 if is_available(clicked_row,clicked_col):
                     if player ==1:
                         mark_square(clicked_row,clicked_col,player)
-                        board[clicked_row][clicked_col]=player  
+                        board[clicked_row][clicked_col]=player 
+                        Win(player) 
                         player = 2
 
                     elif player==2:
                         mark_square(clicked_row,clicked_col,player)
                         board[clicked_row][clicked_col]=player
+                        Win(player) 
                         player =1
                     
                     draw_figure()
