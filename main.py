@@ -1,3 +1,4 @@
+from concurrent.futures.process import _ThreadWakeup
 from ctypes.wintypes import RGB
 from email.base64mime import body_encode
 from re import S
@@ -15,6 +16,7 @@ pygame.init()
 WIDTH = 600
 HEIGHT = WIDTH
 LINE_WIDTH = 15
+DIAG_WIDTH = 25
 CIRCLE_WIDTH = 15
 CIRCLE_RADIUS= 60
 BORD_COLS = 3
@@ -70,29 +72,36 @@ def Win(player):
     hori = horizontalWin(player)
     verti = verticalWin(player)
     diag = digonalWin(player)
-
+    return hori or verti or diag
 def horizontalWin(player):
     for r in range(BORD_ROWS):
         if board[r][0]== player and board[r][1]==player and board[r][2]== player:
-            pygame.draw.line(screen,CIRCLE_COLOR,(0,100),(600,100),LINE_WIDTH)
+            pygame.draw.line(screen,CIRCLE_COLOR,(0,r*200+100),(600,r*200+100),LINE_WIDTH)
             return True
-    
+    return False
 def verticalWin(player):
     for r in range(BORD_ROWS):
         if board[0][r]== player and board[1][r]==player and board[2][r] == player:
-            pygame.draw.line(screen,CIRCLE_COLOR,(100,0),(100,600),LINE_WIDTH)
+            pygame.draw.line(screen,CIRCLE_COLOR,(r*200+100,0),(r*200+100,600),LINE_WIDTH)
             return True
+
+    return False
+
 def digonalWin(player):
     if board[0][0]==player and board[1][1]==player and board[2][2]==player:
-        pygame.draw.line(screen,CIRCLE_COLOR,(0,0),(600,600),LINE_WIDTH)
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,0),(600,600),DIAG_WIDTH)
         return True
     elif board[2][0]==player and board[1][1]==player and board[0][2]==player:
-        pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),LINE_WIDTH)
+        pygame.draw.line(screen,CIRCLE_COLOR,(0,600),(600,0),DIAG_WIDTH)
         return True
     else:
         return False
+
 def tie():
-    pass
+    screen.fill(RGB_COLOR)
+    board =np.zeros((BORD_ROWS,BORD_COLS))
+    pygame.draw.rect(screen,CIRCLE_COLOR,10,10,-1)
+    
 def restart():
     pass
 #Check Horizontall
@@ -113,12 +122,13 @@ drawLine()
 
 #Main loop
 player = 1
+gameOver = False
 while True:
     for event in pygame.event.get():
         if event.type ==pygame.QUIT:
             sys.exit()
 
-        if event.type ==pygame.MOUSEBUTTONDOWN:
+        if event.type ==pygame.MOUSEBUTTONDOWN  and gameOver== False:
             mouseX = event.pos[0]
             mouseY = event.pos[1]
             clicked_row =int(mouseY//200)
@@ -128,17 +138,20 @@ while True:
                     if player ==1:
                         mark_square(clicked_row,clicked_col,player)
                         board[clicked_row][clicked_col]=player 
-                        Win(player) 
+                        if Win(player):
+                            gameOver = True
                         player = 2
 
                     elif player==2:
                         mark_square(clicked_row,clicked_col,player)
                         board[clicked_row][clicked_col]=player
-                        Win(player) 
+                        if Win(player):
+                            gameOver = True
                         player =1
                     
                     draw_figure()
-                    
+                    if is_board_full():
+                        tie()     
        
                     
                   
