@@ -2,7 +2,7 @@ from concurrent.futures.process import _ThreadWakeup
 from ctypes.wintypes import RGB
 from email.base64mime import body_encode
 from re import S
-from turtle import Screen
+from turtle import Screen, circle
 from matplotlib.lines import Line2D
 from matplotlib.pyplot import draw
 import pygame ,sys
@@ -99,8 +99,11 @@ def digonalWin(player):
 
 def tie():
     screen.fill(RGB_COLOR)
-    board =np.zeros((BORD_ROWS,BORD_COLS))
-    pygame.draw.rect(screen,CIRCLE_COLOR,10,10,-1)
+    font = pygame.font.Font(None, 75)
+    text = font.render("Draw !", True, CIRCLE_COLOR)
+    text_rect = text.get_rect(center=(300, 300))
+    screen.blit(text, text_rect)
+    
     
 def restart():
     pass
@@ -128,7 +131,7 @@ while True:
         if event.type ==pygame.QUIT:
             sys.exit()
 
-        if event.type ==pygame.MOUSEBUTTONDOWN  and gameOver== False:
+        if event.type ==pygame.MOUSEBUTTONDOWN  and gameOver == False:
             mouseX = event.pos[0]
             mouseY = event.pos[1]
             clicked_row =int(mouseY//200)
@@ -150,9 +153,9 @@ while True:
                         player =1
                     
                     draw_figure()
-                    if is_board_full():
+                    if is_board_full() and gameOver == False:
                         tie()     
-       
+
                     
                   
                     
