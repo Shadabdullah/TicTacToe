@@ -1,4 +1,4 @@
-from concurrent.futures.process import _ThreadWakeup
+
 from ctypes.wintypes import RGB
 from email.base64mime import body_encode
 from re import S
@@ -73,12 +73,15 @@ def Win(player):
     verti = verticalWin(player)
     diag = digonalWin(player)
     return hori or verti or diag
+
+#Function to check if player win horizontly
 def horizontalWin(player):
     for r in range(BORD_ROWS):
         if board[r][0]== player and board[r][1]==player and board[r][2]== player:
             pygame.draw.line(screen,CIRCLE_COLOR,(0,r*200+100),(600,r*200+100),LINE_WIDTH)
             return True
     return False
+#Function to check if player win vertically
 def verticalWin(player):
     for r in range(BORD_ROWS):
         if board[0][r]== player and board[1][r]==player and board[2][r] == player:
